@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface GlassCardProps extends React.ComponentProps<typeof motion.div> {
-  glow?: "none" | "primary" | "accent";
+  glow?: "none" | "primary" | "accent" | "success";
   interactive?: boolean;
 }
 
@@ -22,10 +22,11 @@ export function GlassCard({
       transition={{ type: "spring", stiffness: 260, damping: 28 }}
       whileHover={interactive ? { y: -2 } : undefined}
       className={cn(
-        "glass-panel relative overflow-hidden rounded-2xl p-5 transition-shadow",
+        "glass-panel relative overflow-hidden rounded-xl p-5 transition-shadow",
         glow === "primary" && "glow-primary",
         glow === "accent" && "glow-accent",
-        interactive && "hover:border-white/[0.14]",
+        glow === "success" && "glow-success",
+        interactive && "hover:border-white/[0.16]",
         className
       )}
       {...props}

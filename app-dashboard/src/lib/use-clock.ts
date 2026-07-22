@@ -1,12 +1,19 @@
 import { useSyncExternalStore } from "react";
 
+/** Cached outside the hook: getSnapshot must return a stable value between
+ * ticks, or useSyncExternalStore sees a "change" on every render and loops. */
+let cached = Date.now();
+
 function subscribe(callback: () => void) {
-  const id = setInterval(callback, 30_000);
+  const id = setInterval(() => {
+    cached = Date.now();
+    callback();
+  }, 30_000);
   return () => clearInterval(id);
 }
 
 function getSnapshot() {
-  return Date.now();
+  return cached;
 }
 
 function getServerSnapshot() {

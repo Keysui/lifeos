@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life OS Workspace</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Inter, Segoe UI, Arial, sans-serif;
+      }
+      body {
+        margin: 0;
+        padding: 2rem;
+        background: #0f172a;
+        color: #f8fafc;
+      }
+      .card {
+        max-width: 900px;
+        margin: 0 auto;
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid #334155;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+      }
+      h1 { margin-top: 0; }
+      a {
+        color: #93c5fd;
+        text-decoration: none;
+      }
+      a:hover { text-decoration: underline; }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .section {
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid #475569;
+        border-radius: 12px;
+        padding: 1rem;
+      }
+      ul { padding-left: 1.1rem; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Life OS Workspace</h1>
+      <p>This repository is organized as a personal operating system with planning, goals, projects, habits, and knowledge.</p>
+
+      <div class="grid">
+        <div class="section">
+          <h2>Start Here</h2>
+          <ul>
+            <li><a href="README.md">README</a></li>
+            <li><a href="CLAUDE.md">CLAUDE instructions</a></li>
+            <li><a href="profile.md">Profile</a></li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Core Areas</h2>
+          <ul>
+            <li><a href="goals/">Goals</a></li>
+            <li><a href="projects/">Projects</a></li>
+            <li><a href="areas/">Areas</a></li>
+            <li><a href="daily/">Daily notes</a></li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Planning & Review</h2>
+          <ul>
+            <li><a href="weekly/">Weekly</a></li>
+            <li><a href="monthly/">Monthly</a></li>
+            <li><a href="quarterly/">Quarterly</a></li>
+            <li><a href="yearly/">Yearly</a></li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Support Files</h2>
+          <ul>
+            <li><a href="templates/">Templates</a></li>
+            <li><a href="resources/">Resources</a></li>
+            <li><a href="decisions/">Decisions</a></li>
+            <li><a href="journal/">Journal</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

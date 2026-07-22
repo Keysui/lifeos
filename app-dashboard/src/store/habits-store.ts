@@ -27,6 +27,7 @@ interface HabitsState {
   habits: Habit[];
   toggleDay: (habitId: string, dateISO: string) => void;
   setDay: (habitId: string, dateISO: string, done: boolean) => void;
+  toggleSubtask: (habitId: string, subtaskId: string) => void;
 }
 
 export const useHabitsStore = create<HabitsState>()(
@@ -53,6 +54,21 @@ export const useHabitsStore = create<HabitsState>()(
               ? h.history.map((d) => (d.date === dateISO ? { ...d, done } : d))
               : [...h.history, { date: dateISO, done }].sort((a, b) => a.date.localeCompare(b.date));
             return { ...h, history, ...recalcStreak(history) };
+          }),
+        })),
+      toggleSubtask: (habitId, subtaskId) =>
+        set((s) => ({
+          habits: s.habits.map((h) => {
+            if (h.id !== habitId || !h.subtasks) return h;
+            const subtasks = h.subtasks.map((st) =>
+              st.id === subtaskId ? { ...st, done: !st.done } : st
+            );
+            const allDone = subtasks.every((st) => st.done);
+            const todayISO = h.history[h.history.length - 1]?.date;
+            const history = todayISO
+              ? h.history.map((d) => (d.date === todayISO ? { ...d, done: allDone } : d))
+              : h.history;
+            return { ...h, subtasks, history, ...recalcStreak(history) };
           }),
         })),
     }),

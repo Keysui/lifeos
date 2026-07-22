@@ -64,52 +64,55 @@
 
 /* Dark is the primary, native theme for Life OS -- default at :root. */
 :root {
-  --background: #05060a;
-  --foreground: #f2f5fa;
+  --background: #050505;
+  --foreground: #eef1f6;
 
-  --card: rgba(255, 255, 255, 0.05);
-  --card-foreground: #f2f5fa;
-  --popover: #0b0d14;
-  --popover-foreground: #f2f5fa;
+  --card: rgba(255, 255, 255, 0.025);
+  --card-foreground: #eef1f6;
+  --popover: #0a0b0d;
+  --popover-foreground: #eef1f6;
 
-  --primary: #5ce1e6;
-  --primary-foreground: #04141a;
-  --secondary: rgba(255, 255, 255, 0.06);
-  --secondary-foreground: #f2f5fa;
+  --primary: #4dead2;
+  --primary-foreground: #041a17;
+  --secondary: rgba(255, 255, 255, 0.05);
+  --secondary-foreground: #eef1f6;
 
-  --muted: rgba(255, 255, 255, 0.04);
-  --muted-foreground: #8b93a7;
+  --muted: rgba(255, 255, 255, 0.03);
+  --muted-foreground: #82899a;
 
-  --accent: #7c5cff;
-  --accent-foreground: #f2f5fa;
+  --accent: #8a6bff;
+  --accent-foreground: #eef1f6;
 
-  --destructive: #f87171;
-  --border: rgba(255, 255, 255, 0.08);
+  --destructive: #f2555a;
+  --border: rgba(255, 255, 255, 0.09);
   --input: rgba(255, 255, 255, 0.08);
-  --ring: rgba(92, 225, 230, 0.5);
+  --ring: rgba(77, 234, 210, 0.5);
 
-  --chart-1: #5ce1e6;
-  --chart-2: #7c5cff;
-  --chart-3: #4ade80;
-  --chart-4: #fbbf24;
-  --chart-5: #f87171;
+  --chart-1: #4dead2;
+  --chart-2: #8a6bff;
+  --chart-3: #3ce27a;
+  --chart-4: #f2b33d;
+  --chart-5: #f2555a;
 
-  --radius: 1rem;
+  --radius: 0.625rem;
 
-  --sidebar: rgba(8, 10, 16, 0.7);
-  --sidebar-foreground: #f2f5fa;
-  --sidebar-primary: #5ce1e6;
-  --sidebar-primary-foreground: #04141a;
-  --sidebar-accent: rgba(255, 255, 255, 0.06);
-  --sidebar-accent-foreground: #f2f5fa;
-  --sidebar-border: rgba(255, 255, 255, 0.06);
-  --sidebar-ring: rgba(92, 225, 230, 0.5);
+  --sidebar: rgba(6, 7, 8, 0.75);
+  --sidebar-foreground: #eef1f6;
+  --sidebar-primary: #4dead2;
+  --sidebar-primary-foreground: #041a17;
+  --sidebar-accent: rgba(255, 255, 255, 0.05);
+  --sidebar-accent-foreground: #eef1f6;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-ring: rgba(77, 234, 210, 0.5);
 
-  --life-primary: #5ce1e6;
-  --life-accent: #7c5cff;
-  --life-success: #4ade80;
-  --life-warning: #fbbf24;
-  --life-danger: #f87171;
+  /* Status/positive accent -- the "operator green" used sparingly for
+     online states, deltas, completion, checkmarks. Decorative glow
+     (rings, active borders, focus states) uses --life-primary instead. */
+  --life-primary: #4dead2;
+  --life-accent: #8a6bff;
+  --life-success: #3ce27a;
+  --life-warning: #f2b33d;
+  --life-danger: #f2555a;
 
   color-scheme: dark;
 }
@@ -170,9 +173,9 @@
   body {
     @apply bg-background text-foreground;
     background-image:
-      radial-gradient(ellipse 80% 50% at 15% -10%, rgba(124, 92, 255, 0.16), transparent 60%),
-      radial-gradient(ellipse 60% 40% at 90% 0%, rgba(92, 225, 230, 0.12), transparent 60%),
-      radial-gradient(ellipse 60% 60% at 50% 110%, rgba(92, 225, 230, 0.06), transparent 60%);
+      radial-gradient(ellipse 70% 45% at 15% -10%, rgba(138, 107, 255, 0.05), transparent 60%),
+      radial-gradient(ellipse 50% 35% at 90% 0%, rgba(77, 234, 210, 0.045), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 50% 110%, rgba(77, 234, 210, 0.025), transparent 60%);
     background-attachment: fixed;
   }
 
@@ -194,34 +197,51 @@
 @layer components {
   .glass-panel {
     background: var(--card);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
     border: 1px solid var(--border);
     box-shadow:
-      0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
-      0 8px 30px -12px rgba(0, 0, 0, 0.6);
+      0 1px 0 0 rgba(255, 255, 255, 0.03) inset,
+      0 8px 24px -14px rgba(0, 0, 0, 0.7);
   }
 
   .glass-panel-strong {
-    background: color-mix(in oklch, var(--card) 200%, transparent);
-    backdrop-filter: blur(28px) saturate(160%);
-    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    background: color-mix(in oklch, var(--card) 220%, transparent);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
     border: 1px solid var(--border);
     box-shadow:
-      0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-      0 20px 60px -20px rgba(0, 0, 0, 0.7);
+      0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
+      0 20px 60px -20px rgba(0, 0, 0, 0.8);
   }
 
   .glow-primary {
-    box-shadow: 0 0 0 1px rgba(92, 225, 230, 0.15), 0 0 24px -4px rgba(92, 225, 230, 0.35);
+    box-shadow: 0 0 0 1px rgba(77, 234, 210, 0.16), 0 0 22px -4px rgba(77, 234, 210, 0.35);
   }
 
   .glow-accent {
-    box-shadow: 0 0 0 1px rgba(124, 92, 255, 0.18), 0 0 24px -4px rgba(124, 92, 255, 0.4);
+    box-shadow: 0 0 0 1px rgba(138, 107, 255, 0.18), 0 0 22px -4px rgba(138, 107, 255, 0.4);
+  }
+
+  .glow-success {
+    box-shadow: 0 0 0 1px rgba(60, 226, 122, 0.18), 0 0 18px -4px rgba(60, 226, 122, 0.4);
   }
 
   .text-glow-primary {
-    text-shadow: 0 0 18px rgba(92, 225, 230, 0.45);
+    text-shadow: 0 0 16px rgba(77, 234, 210, 0.4);
+  }
+
+  /* HUD panel label: "01 // OPERATOR" -- numbered, wide-tracked, dim. */
+  .hud-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .hud-index {
+    color: color-mix(in oklch, var(--life-primary) 70%, var(--muted-foreground));
   }
 
   .ambient-orb {

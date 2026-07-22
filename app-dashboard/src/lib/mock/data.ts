@@ -181,11 +181,54 @@ function buildHistory(seed: number, hitRate: number) {
 
 export const habits: Habit[] = [
   { id: "h1", name: "Morning deep work block", area: "Productivity", targetPerWeek: 5, streak: 12, bestStreak: 21, history: buildHistory(1, 0.78) },
-  { id: "h2", name: "Strength training", area: "Health", targetPerWeek: 4, streak: 4, bestStreak: 9, history: buildHistory(2, 0.6) },
+  {
+    id: "h2",
+    name: "Strength training",
+    area: "Health",
+    targetPerWeek: 4,
+    streak: 4,
+    bestStreak: 9,
+    history: buildHistory(2, 0.6),
+    subtasks: [
+      { id: "h2-1", label: "Push", done: true },
+      { id: "h2-2", label: "Pull", done: false },
+      { id: "h2-3", label: "Legs", done: false },
+      { id: "h2-4", label: "Core", done: false },
+    ],
+  },
   { id: "h3", name: "Read 20+ pages", area: "Personal Growth", targetPerWeek: 6, streak: 6, bestStreak: 30, history: buildHistory(3, 0.72) },
   { id: "h4", name: "No phone first 30 min", area: "Productivity", targetPerWeek: 7, streak: 2, bestStreak: 14, history: buildHistory(4, 0.55) },
-  { id: "h5", name: "Evening reflection", area: "Personal Growth", targetPerWeek: 7, streak: 9, bestStreak: 19, history: buildHistory(5, 0.68) },
+  {
+    id: "h5",
+    name: "Evening reflection",
+    area: "Personal Growth",
+    targetPerWeek: 7,
+    streak: 9,
+    bestStreak: 19,
+    history: buildHistory(5, 0.68),
+    subtasks: [
+      { id: "h5-1", label: "Journal", done: true },
+      { id: "h5-2", label: "Gratitude", done: true },
+      { id: "h5-3", label: "Tomorrow's top 3", done: false },
+    ],
+  },
   { id: "h6", name: "8h sleep window", area: "Health", targetPerWeek: 7, streak: 1, bestStreak: 11, history: buildHistory(6, 0.5) },
+  {
+    id: "h7",
+    name: "Skincare",
+    area: "Health",
+    targetPerWeek: 7,
+    streak: 5,
+    bestStreak: 22,
+    history: buildHistory(7, 0.74),
+    subtasks: [
+      { id: "h7-1", label: "Cleanse", done: true },
+      { id: "h7-2", label: "Tone", done: true },
+      { id: "h7-3", label: "Serum", done: false },
+      { id: "h7-4", label: "Moisturize", done: false },
+      { id: "h7-5", label: "SPF", done: false },
+    ],
+  },
 ];
 
 /* ------------------------------------------------------------------ */

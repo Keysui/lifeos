@@ -2,9 +2,6 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface UIState {
-  sidebarCollapsed: boolean;
-  toggleSidebar: () => void;
-
   commandPaletteOpen: boolean;
   setCommandPaletteOpen: (open: boolean) => void;
 
@@ -22,14 +19,17 @@ interface UIState {
 
   currentFocusTaskId: string | null;
   setCurrentFocusTaskId: (id: string | null) => void;
+
+  financeRevealed: boolean;
+  toggleFinanceRevealed: () => void;
+
+  focusStatus: string;
+  setFocusStatus: (v: string) => void;
 }
 
 export const useUIStore = create<UIState>()(
   persist(
     (set, get) => ({
-      sidebarCollapsed: false,
-      toggleSidebar: () => set({ sidebarCollapsed: !get().sidebarCollapsed }),
-
       commandPaletteOpen: false,
       setCommandPaletteOpen: (open) => set({ commandPaletteOpen: open }),
 
@@ -47,15 +47,21 @@ export const useUIStore = create<UIState>()(
 
       currentFocusTaskId: "t9",
       setCurrentFocusTaskId: (id) => set({ currentFocusTaskId: id }),
+
+      financeRevealed: false,
+      toggleFinanceRevealed: () => set({ financeRevealed: !get().financeRevealed }),
+
+      focusStatus: "Building the Life OS command center.",
+      setFocusStatus: (v) => set({ focusStatus: v }),
     }),
     {
       name: "life-os-ui",
       partialize: (state) => ({
-        sidebarCollapsed: state.sidebarCollapsed,
         theme: state.theme,
         reducedMotion: state.reducedMotion,
         highContrast: state.highContrast,
         desktopNotificationsEnabled: state.desktopNotificationsEnabled,
+        focusStatus: state.focusStatus,
       }),
     }
   )

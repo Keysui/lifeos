@@ -47,6 +47,12 @@ export interface Goal {
   area: string;
 }
 
+export interface HabitSubtask {
+  id: string;
+  label: string;
+  done: boolean;
+}
+
 export interface Habit {
   id: string;
   name: string;
@@ -55,6 +61,8 @@ export interface Habit {
   streak: number;
   bestStreak: number;
   history: { date: string; done: boolean }[]; // last 84 days
+  /** When present, today's completion is derived: all subtasks done -> habit done. */
+  subtasks?: HabitSubtask[];
 }
 
 export interface JournalEntry {

@@ -1,6 +1,7 @@
 "use client";
 
-import { Moon, SunMedium, Eye, Waves, Keyboard, User, Bell } from "lucide-react";
+import Link from "next/link";
+import { Moon, SunMedium, Eye, Waves, Keyboard, User, Bell, Bot, ChevronRight } from "lucide-react";
 import { SectionHeader } from "@/components/shared/section-header";
 import { GlassCard } from "@/components/shared/glass-card";
 import { Switch } from "@/components/ui/switch";
@@ -82,6 +83,21 @@ export default function SettingsPage() {
           </div>
         </div>
       </GlassCard>
+
+      <Link href="/settings/ai">
+        <GlassCard glow="accent" className="mb-4 flex flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--life-accent)]/15 text-[var(--life-accent)]">
+              <Bot className="h-5 w-5" />
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">AI Settings</h3>
+              <p className="text-xs text-muted-foreground">Kimi (Moonshot AI) · provider status, usage, and API keys</p>
+            </div>
+          </div>
+          <ChevronRight className="h-4 w-4 text-muted-foreground" />
+        </GlassCard>
+      </Link>
 
       <GlassCard className="mb-4 flex flex-col gap-4">
         <h3 className="text-sm font-semibold text-foreground">Appearance</h3>

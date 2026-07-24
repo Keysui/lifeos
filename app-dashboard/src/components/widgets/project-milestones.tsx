@@ -1,11 +1,48 @@
 "use client";
 
-import { CheckCircle2, Circle, AlertOctagon, Activity } from "lucide-react";
+import { CheckCircle2, Circle, AlertOctagon, Activity, Sparkles, Loader2 } from "lucide-react";
 import { GlassCard } from "@/components/shared/glass-card";
 import { ProgressRing } from "@/components/shared/progress-ring";
 import { useProjectsStore } from "@/store/projects-store";
 import { useActivityStore } from "@/store/activity-store";
+import { useCachedAIResult } from "@/ai/hooks/useCachedAIResult";
+import { summarizeProjectStatus } from "@/ai/services/ModuleAI";
 import { cn } from "@/lib/utils";
+import type { Project } from "@/types";
+
+function AIStatusSummary({ project }: { project: Project }) {
+  const sourceContent = JSON.stringify({
+    status: project.status,
+    progress: project.progress,
+    blockers: project.blockers,
+    nextAction: project.nextAction,
+    milestones: project.milestones.map((m) => ({ title: m.title, done: m.done })),
+  });
+
+  const { result, state } = useCachedAIResult({
+    entityType: "project",
+    entityId: project.id,
+    kind: "status_summary",
+    sourceContent,
+    generate: () => summarizeProjectStatus(project),
+  });
+
+  if (state === "loading") {
+    return (
+      <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+        <Loader2 className="h-3 w-3 animate-spin" /> Kimi is summarizing…
+      </div>
+    );
+  }
+  if (state === "error" || !result) return null;
+
+  return (
+    <p className="flex items-start gap-1.5 text-[11px] leading-relaxed text-foreground/75">
+      <Sparkles className="mt-0.5 h-3 w-3 shrink-0 text-[var(--life-accent)]" />
+      {result}
+    </p>
+  );
+}
 
 export function ProjectMilestones() {
   const projects = useProjectsStore((s) => s.projects);
@@ -26,6 +63,8 @@ export function ProjectMilestones() {
                   <p className="text-xs text-muted-foreground">{p.area}{p.deadline ? ` · Due ${p.deadline}` : ""}</p>
                 </div>
               </div>
+
+              <AIStatusSummary project={p} />
 
               {p.blockers && p.blockers.length > 0 && (
                 <div className="flex items-start gap-2 rounded-lg border border-[var(--life-danger)]/25 bg-[var(--life-danger)]/[0.08] px-3 py-2 text-xs text-[var(--life-danger)]">

@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -83,10 +84,12 @@ export function TopNav() {
             )}
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-80">
-            <DropdownMenuLabel className="flex items-center justify-between">
-              Notifications
-              {unread > 0 && <Badge variant="secondary">{unread} new</Badge>}
-            </DropdownMenuLabel>
+            <DropdownMenuGroup>
+              <DropdownMenuLabel className="flex items-center justify-between">
+                Notifications
+                {unread > 0 && <Badge variant="secondary">{unread} new</Badge>}
+              </DropdownMenuLabel>
+            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             {notifications.map((n) => (
               <DropdownMenuItem key={n.id} className="flex flex-col items-start gap-0.5 py-2">
@@ -113,12 +116,14 @@ export function TopNav() {
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-64">
-            <DropdownMenuLabel>
-              <div className="flex flex-col">
-                <span className="text-sm font-medium">{name}</span>
-                <span className="text-xs font-normal text-muted-foreground">{role}</span>
-              </div>
-            </DropdownMenuLabel>
+            <DropdownMenuGroup>
+              <DropdownMenuLabel>
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium">{name}</span>
+                  <span className="text-xs font-normal text-muted-foreground">{role}</span>
+                </div>
+              </DropdownMenuLabel>
+            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem render={<Link href="/settings" />}>Settings</DropdownMenuItem>
           </DropdownMenuContent>

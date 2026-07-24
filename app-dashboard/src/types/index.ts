@@ -91,6 +91,18 @@ export interface HealthMetric {
   workoutMinutes: number;
 }
 
+export interface NutritionBreakdown {
+  calories: number;
+  proteinG: number;
+  carbsG: number;
+  fatG: number;
+  fiberG?: number;
+  sugarG?: number;
+  sodiumMg?: number;
+  micronutrients?: Record<string, string>; // e.g. { "Vitamin C": "40mg", "Iron": "2mg" }
+  notes?: string; // e.g. a brief recommendation
+}
+
 export interface FinanceSnapshot {
   month: string;
   income: number;

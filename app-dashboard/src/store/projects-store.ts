@@ -5,6 +5,7 @@ import type { Project, Status } from "@/types";
 
 interface ProjectsState {
   projects: Project[];
+  addProject: (draft: Partial<Project> & Pick<Project, "name">) => Project;
   bumpProgress: (id: string, amount: number) => void;
   setStatus: (id: string, status: Status) => void;
   updateProject: (id: string, patch: Partial<Project>) => void;
@@ -15,6 +16,18 @@ export const useProjectsStore = create<ProjectsState>()(
   persist(
     (set) => ({
       projects: seedProjects,
+      addProject: (draft) => {
+        const project: Project = {
+          id: crypto.randomUUID(),
+          area: "",
+          status: "todo",
+          progress: 0,
+          milestones: [],
+          ...draft,
+        };
+        set((s) => ({ projects: [project, ...s.projects] }));
+        return project;
+      },
       bumpProgress: (id, amount) =>
         set((s) => ({
           projects: s.projects.map((p) =>

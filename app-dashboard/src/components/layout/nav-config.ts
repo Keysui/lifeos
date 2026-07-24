@@ -14,6 +14,7 @@ import {
   BarChart3,
   ClipboardCheck,
   Settings,
+  Inbox,
   type LucideIcon,
 } from "lucide-react";
 
@@ -32,6 +33,7 @@ export const navItems: NavItem[] = [
   { label: "AI Assistant", href: "/ai-assistant", icon: Sparkles, section: "ai", primary: true, tabLabel: "Brain" },
 
   { label: "Dashboard", href: "/", icon: LayoutDashboard, section: "core", primary: true, tabLabel: "Home" },
+  { label: "Inbox", href: "/inbox", icon: Inbox, section: "core" },
   { label: "Today", href: "/today", icon: Sun, section: "core" },
   { label: "Calendar", href: "/calendar", icon: CalendarDays, section: "core" },
   { label: "Projects", href: "/projects", icon: FolderKanban, section: "core" },

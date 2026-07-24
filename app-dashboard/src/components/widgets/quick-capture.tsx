@@ -6,19 +6,18 @@ import { Inbox, Plus } from "lucide-react";
 import { GlassCard } from "@/components/shared/glass-card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useInboxStore } from "@/store/inbox-store";
 
 export function QuickCapture() {
+  const notes = useInboxStore((s) => s.notes);
+  const addNote = useInboxStore((s) => s.addNote);
   const [value, setValue] = useState("");
-  const [captured, setCaptured] = useState<string[]>([
-    "Look into brokerage fee comparison tools",
-    "Idea: weekly AI-generated retro email",
-  ]);
 
   function submit() {
     const trimmed = value.trim();
     if (!trimmed) return;
-    setCaptured((prev) => [trimmed, ...prev].slice(0, 6));
     setValue("");
+    void addNote(trimmed);
   }
 
   return (
@@ -41,16 +40,16 @@ export function QuickCapture() {
       </div>
       <div className="mt-3 flex flex-col gap-1.5">
         <AnimatePresence initial={false}>
-          {captured.map((item) => (
+          {notes.slice(0, 6).map((note) => (
             <motion.div
-              key={item}
+              key={note.id}
               initial={{ opacity: 0, height: 0, y: -6 }}
               animate={{ opacity: 1, height: "auto", y: 0 }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="truncate rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-xs text-muted-foreground"
             >
-              {item}
+              {note.content}
             </motion.div>
           ))}
         </AnimatePresence>

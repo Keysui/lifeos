@@ -25,6 +25,7 @@ function recalcStreak(history: Habit["history"]): { streak: number; bestStreak: 
 
 interface HabitsState {
   habits: Habit[];
+  addHabit: (draft: Partial<Habit> & Pick<Habit, "name">) => Habit;
   toggleDay: (habitId: string, dateISO: string) => void;
   setDay: (habitId: string, dateISO: string, done: boolean) => void;
   toggleSubtask: (habitId: string, subtaskId: string) => void;
@@ -34,6 +35,19 @@ export const useHabitsStore = create<HabitsState>()(
   persist(
     (set) => ({
       habits: seedHabits,
+      addHabit: (draft) => {
+        const habit: Habit = {
+          id: crypto.randomUUID(),
+          area: "",
+          targetPerWeek: 7,
+          streak: 0,
+          bestStreak: 0,
+          history: [],
+          ...draft,
+        };
+        set((s) => ({ habits: [habit, ...s.habits] }));
+        return habit;
+      },
       toggleDay: (habitId, dateISO) =>
         set((s) => ({
           habits: s.habits.map((h) => {

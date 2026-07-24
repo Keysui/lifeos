@@ -15,6 +15,8 @@ import {
   ClipboardCheck,
   Settings,
   Inbox,
+  GraduationCap,
+  Salad,
   type LucideIcon,
 } from "lucide-react";
 
@@ -30,7 +32,7 @@ export interface NavItem {
 }
 
 export const navItems: NavItem[] = [
-  { label: "AI Assistant", href: "/ai-assistant", icon: Sparkles, section: "ai", primary: true, tabLabel: "Brain" },
+  { label: "AI Assistant", href: "/ai-assistant", icon: Sparkles, section: "ai" },
 
   { label: "Dashboard", href: "/", icon: LayoutDashboard, section: "core", primary: true, tabLabel: "Home" },
   { label: "Inbox", href: "/inbox", icon: Inbox, section: "core" },
@@ -39,19 +41,21 @@ export const navItems: NavItem[] = [
   { label: "Projects", href: "/projects", icon: FolderKanban, section: "core" },
   { label: "Goals", href: "/goals", icon: Target, section: "core" },
   { label: "Knowledge", href: "/knowledge", icon: BrainCircuit, section: "core" },
-  { label: "Tasks", href: "/tasks", icon: ListChecks, section: "core", primary: true, tabLabel: "CRM" },
+  { label: "Tasks & Goals", href: "/tasks", icon: ListChecks, section: "core", primary: true, tabLabel: "Tasks" },
+  { label: "School", href: "/school", icon: GraduationCap, section: "core", primary: true, tabLabel: "School" },
 
-  { label: "Habits", href: "/habits", icon: Flame, section: "life" },
-  { label: "Journal", href: "/journal", icon: BookOpen, section: "life", primary: true, tabLabel: "Journal" },
-  { label: "Finances", href: "/finances", icon: Wallet, section: "life", primary: true, tabLabel: "Finance" },
+  { label: "Skills & Habits", href: "/habits", icon: Flame, section: "life", primary: true, tabLabel: "Habits" },
+  { label: "Reflection", href: "/journal", icon: BookOpen, section: "life", primary: true, tabLabel: "Reflection" },
+  { label: "Finance", href: "/finances", icon: Wallet, section: "life", primary: true, tabLabel: "Finance" },
   { label: "Health", href: "/health", icon: HeartPulse, section: "life", primary: true, tabLabel: "Health" },
+  { label: "Nutrition", href: "/nutrition", icon: Salad, section: "life", primary: true, tabLabel: "Nutrition" },
 
   { label: "Analytics", href: "/analytics", icon: BarChart3, section: "system" },
   { label: "Reviews", href: "/reviews", icon: ClipboardCheck, section: "system" },
   { label: "Settings", href: "/settings", icon: Settings, section: "system" },
 ];
 
-const primaryOrder = ["/", "/tasks", "/ai-assistant", "/finances", "/journal", "/health"];
+const primaryOrder = ["/", "/finances", "/school", "/tasks", "/habits", "/journal", "/health", "/nutrition"];
 
 export const primaryNavItems: NavItem[] = navItems
   .filter((i) => i.primary)
